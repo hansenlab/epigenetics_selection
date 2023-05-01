@@ -18,7 +18,7 @@ load(file = "median_expr_testis.rda") ###from GTEx (same dataset used in Boukas 
 library(tximport)
 library(EnsDb.Hsapiens.v75)
 files <- paste0("h1_esc_rnaseq/quants/", 
-                list.files("h1_esc_rnaseq/quants"), "/quant.sf") ###from ENCODE
+                list.files("h1_esc_rnaseq/quants"), "/quant.sf") ###from ENCODE after downloading fastq files and mapping/quantifying transcripts with Salmon
 
 names(files) <- paste0("healthy", 1:2)
 
