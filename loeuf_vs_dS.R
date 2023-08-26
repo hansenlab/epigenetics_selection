@@ -17,28 +17,28 @@ genes_with_ds$oe_lof_upper <- constraint[genes_with_ds$ensembl_transcript_id, "o
 
 genes_with_ds_no_duplicates <- genes_with_ds[-which(genes_with_ds$ensembl_transcript_id %in% 
                                      genes_with_ds$ensembl_transcript_id[which(duplicated(genes_with_ds$ensembl_transcript_id))]), ]
-genes_with_ds_no_duplicates <- genes_with_ds_no_duplicates[-which(genes_with_ds_no_duplicates$ptroglodytes_homolog_ds == 0)]
+genes_with_ds_no_duplicates <- genes_with_ds_no_duplicates[-which(genes_with_ds_no_duplicates$ptroglodytes_homolog_ds == 0), ]
 
 
 proms_granges_for_plot <- genes_with_ds_no_duplicates
 proms_granges_for_plot$group <- 10
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.9) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.8))] <- 9
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.8) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.7))] <- 8
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.7) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.6))] <- 7
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.6) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.5))] <- 6
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.5) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.4))] <- 5
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.4) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.3))] <- 4
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.3) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.2))] <- 3
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.2) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.1))] <- 2
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.1) 
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.9, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.8, na.rm = TRUE))] <- 9
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.8, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.7, na.rm = TRUE))] <- 8
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.7, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.6, na.rm = TRUE))] <- 7
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.6, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.5, na.rm = TRUE))] <- 6
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.5, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.4, na.rm = TRUE))] <- 5
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.4, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.3, na.rm = TRUE))] <- 4
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.3, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.2, na.rm = TRUE))] <- 3
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.2, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.1, na.rm = TRUE))] <- 2
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.1, na.rm = TRUE) 
 )] <- 1
 
 
@@ -56,7 +56,7 @@ dev.off()
 
 quartz(file = "loeuf_vs_dS.pdf", height = 2.2, width = 2.2, pointsize = 8, type = "pdf")
 ggplot(proms_df_for_plot, aes(x = ds, y = group1)) + 
-  geom_density_ridges2(fill = alpha("red", 0.59), color = rgb(0,0,0,0.5), scale = 1.2, from = 0, to = 0.05) + 
+  geom_density_ridges2(fill = alpha("red", 0.59), color = rgb(0,0,0,0.5), scale = 0.9, from = 0, to = 0.05) + 
   labs(x = "dS (human vs chimp)", y = "LOEUF decile") + 
   theme_ridges(center = TRUE, grid = FALSE) + 
   theme(axis.text=element_text(size = 8)) + theme(axis.title=element_text(size = 10))
@@ -76,28 +76,28 @@ genes_with_ds$oe_lof_upper <- constraint[genes_with_ds$ensembl_transcript_id, "o
 
 genes_with_ds_no_duplicates <- genes_with_ds[-which(genes_with_ds$ensembl_transcript_id %in% 
                                                       genes_with_ds$ensembl_transcript_id[which(duplicated(genes_with_ds$ensembl_transcript_id))]), ]
-genes_with_ds_no_duplicates <- genes_with_ds_no_duplicates[-which(genes_with_ds_no_duplicates$mmusculus_homolog_ds == 0)]
+genes_with_ds_no_duplicates <- genes_with_ds_no_duplicates[-which(genes_with_ds_no_duplicates$mmusculus_homolog_ds == 0), ]
 
 
 proms_granges_for_plot <- genes_with_ds_no_duplicates
 proms_granges_for_plot$group <- 10
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.9) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.8))] <- 9
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.8) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.7))] <- 8
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.7) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.6))] <- 7
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.6) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.5))] <- 6
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.5) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.4))] <- 5
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.4) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.3))] <- 4
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.3) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.2))] <- 3
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.2) 
-                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.1))] <- 2
-proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.1) 
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.9, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.8, na.rm = TRUE))] <- 9
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.8, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.7, na.rm = TRUE))] <- 8
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.7, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.6, na.rm = TRUE))] <- 7
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.6, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.5, na.rm = TRUE))] <- 6
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.5, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.4, na.rm = TRUE))] <- 5
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.4, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.3, na.rm = TRUE))] <- 4
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.3, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.2, na.rm = TRUE))] <- 3
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.2, na.rm = TRUE) 
+                                   & proms_granges_for_plot$oe_lof_upper > quantile(proms_granges_for_plot$oe_lof_upper, 0.1, na.rm = TRUE))] <- 2
+proms_granges_for_plot$group[which(proms_granges_for_plot$oe_lof_upper < quantile(proms_granges_for_plot$oe_lof_upper, 0.1, na.rm = TRUE) 
 )] <- 1
 
 
