@@ -68,6 +68,7 @@ getMutationRateDF <- function(mutation_data_frame, mutation_type, region_granges
 }
 
 ###get objects that will be used for plots
+de_novo_df <- read_csv('de_novo_mutations/all_de_novo_mutations_gene4denovo_updated.csv')
 all_SNV_types <- c("-", "frameshift substitution", "nonframeshift substitution", 
                    "nonsynonymous SNV", "nonsynonymous SNV;splicing",  "stopgain",  "stoploss",  "synonymous SNV", 
                    "synonymous SNV;splicing") #"-" corresponds to mutations outside coding regions
@@ -106,15 +107,17 @@ dev.off()
 mod_no_introns <- lm(mut_rate_df_syn_no_introns$mut_rate ~ mut_rate_df_syn_no_introns$oe_lof_upper)
 mod_with_introns <- lm(mut_rate_df_all_snv_plus_introns$mut_rate ~ mut_rate_df_all_snv_plus_introns$oe_lof_upper)
 mod_with_introns_2 <- lm(mut_rate_df_syn_plus_introns$mut_rate ~ mut_rate_df_syn_plus_introns$oe_lof_upper)
+mod_no_introns_without_h3k36me3 <- lm(mut_rate_df_syn_no_introns_non_h3k36me3$mut_rate ~ mut_rate_df_syn_no_introns_non_h3k36me3$oe_lof_upper)
 
 quartz(file = "loeuf_mut_rate_r_squared.pdf", height = 2.5, width = 1.8, pointsize = 8, type = "pdf")
 par(mar = c(4, 5.5, 1, 1))
 plot(1, 100*summary(mod_no_introns)$adj.r.squared, pch = 19, cex = 1.5, col = alpha("red", 0.62), bty = 'l', 
-     xlab = "", ylab = "% explained\nmut rate variance by LOEUF", cex.lab = 1.1, ylim = c(0, 4), xlim = c(0.8, 3.2), xaxt = 'n', yaxt = 'n')
-points(2, 100*summary(mod_with_introns_2)$adj.r.squared, pch = 19, cex = 1.5, col = alpha("red", 0.62))
-points(3, 100*summary(mod_with_introns)$adj.r.squared, pch = 19, cex = 1.5, col = alpha("red", 0.62))
+     xlab = "", ylab = "% explained\nmut rate variance by LOEUF", cex.lab = 1.1, ylim = c(0, 4), xlim = c(0.8, 4.2), xaxt = 'n', yaxt = 'n')
+points(2, 100*summary(mod_no_introns_without_h3k36me3)$adj.r.squared, pch = 19, cex = 1.5, col = alpha("red", 0.62))
+points(3, 100*summary(mod_with_introns_2)$adj.r.squared, pch = 19, cex = 1.5, col = alpha("red", 0.62))
+points(4, 100*summary(mod_with_introns)$adj.r.squared, pch = 19, cex = 1.5, col = alpha("red", 0.62))
 axis(2, at = c(0, 2, 4), cex.axis = 1.2)
-axis(1, at = c(1,2,3), labels = c("synonymous", "synonymous\n+ intronic", "all coding SNV\n+intronic"), 
+axis(1, at = c(1,2,3,4), labels = c("synonymous", "synonymous w/out\nH3K36me3 regions", "synonymous\n+ intronic", "all coding SNV\n+intronic"), 
      las = 2, cex.axis = 0.5)
 dev.off()
 
